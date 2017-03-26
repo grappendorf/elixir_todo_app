@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "chrome": 52
+      },
+      "modules": "commonjs",
+      "loose": true
+    }]
+  ]
+}

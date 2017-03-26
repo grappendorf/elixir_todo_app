@@ -1,0 +1,190 @@
+@import 'font-awesome';
+@import './spop';
+
+.text-strikethrough {
+  text-decoration: line-through;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.fa + .fa {
+  margin-left: 0.4em;
+}
+
+h1 {
+  padding-bottom: 1em;
+}
+
+small {
+  font-size: 50% !important;
+}
+
+.todo-input {
+  padding-bottom: 1em;
+}
+
+.todo-actions {
+  margin-top: 0.5em;
+}
+
+.tutor-container {
+  position: relative;
+}
+
+.tutor {
+  z-index: 10;
+  position: absolute;
+  background: #e5ece2;
+  border: 4px solid #cfd6cd;
+  width: 20em;
+  top: -0.5em;
+  padding: 0.3em;
+}
+
+.tutor:after, .tutor:before {
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.tutor:after {
+  border-color: rgba(213, 168, 45, 0);
+  border-width: 30px;
+  margin-top: -30px;
+}
+
+.tutor:before {
+  border-color: rgba(245, 206, 51, 0);
+  border-width: 36px;
+  margin-top: -36px;
+}
+
+.tutor-left {
+  left: -22em;
+}
+
+.tutor-right {
+  right: -22em;
+}
+
+.tutor-left:after, .tutor-left:before {
+  left: 100%;
+}
+
+.tutor-right:after, .tutor-right:before {
+  right: 100%;
+}
+
+.tutor-left:after {
+  border-left-color: #e5ece2;
+}
+
+.tutor-left:before{
+  border-left-color: #cfd6cd;
+}
+
+.tutor-right:after {
+  border-right-color: #e5ece2;
+}
+
+.tutor-right:before{
+  border-right-color: #cfd6cd;
+}
+
+td {
+  white-space: nowrap;
+}
+
+.width-0 {
+  width: 0%;
+}
+
+.width-5 {
+  width: 5%;
+}
+
+.width-10 {
+  width: 10%;
+}
+
+.width-15 {
+  width: 15%;
+}
+
+.width-20 {
+  width: 20%;
+}
+
+.width-25 {
+  width: 25%;
+}
+
+.width-30 {
+  width: 30%;
+}
+
+.width-35 {
+  width: 35%;
+}
+
+.width-40 {
+  width: 40%;
+}
+
+.width-45 {
+  width: 45%;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.width-55 {
+  width: 55%;
+}
+
+.width-60 {
+  width: 60%;
+}
+
+.width-65 {
+  width: 65%;
+}
+
+.width-70 {
+  width: 70%;
+}
+
+.width-75 {
+  width: 75%;
+}
+
+.width-80 {
+  width: 80%;
+}
+
+.width-85 {
+  width: 85%;
+}
+
+.width-90 {
+  width: 90%;
+}
+
+.width-95 {
+  width: 95%;
+}
+
+.width-100 {
+  width: 100%;
+}
