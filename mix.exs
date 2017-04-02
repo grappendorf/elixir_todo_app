@@ -45,7 +45,18 @@ defmodule ElixirTodoApp.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:elixir_script, "~> 0.27.0"},
+      {:elixir_script,
+        git: "https://github.com/elixirscript/elixirscript.git",
+        commit: "c6ab0a9e8a5cbc43eb68ee9102928714c627ec05",
+        compile: "
+          mix deps.get;
+          yarn;
+          yarn build;
+          mix compile;
+          rm -rf ../../_build/dev/lib/elixir_script;
+          cp -a _build/dev/lib/elixir_script ../../_build/dev/lib;
+          rm -f ../../_build/dev/lib/elixir_script/priv;
+          cp -a priv ../../_build/dev/lib/elixir_script"},
       {:fs, "~> 2.12.0", override: true},
       {:ecto_enum, "~> 1.0.1"},
       {:espec_phoenix, "~> 0.6.8", only: :test},

@@ -1,4 +1,6 @@
-defmodule Channels do
+defmodule Client.Channels do
+  alias Client.Store
+
   def dispatchMessage msg do
     action = [String.to_existing_atom(msg.action) | msg.params] |> List.to_tuple
     Store.dispatch action

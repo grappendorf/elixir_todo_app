@@ -1,1 +1,9 @@
-<div id="app"></div>
+<div id="app">
+  <%= @dom %>
+</div>
+<script type="application/json" id="state">
+  <%= raw Poison.encode!(@state) %>
+</script>
+<script type="application/json" id="config">
+  <%= raw Poison.encode!(@config) %>
+</script>

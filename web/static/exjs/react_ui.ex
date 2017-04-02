@@ -1,6 +1,4 @@
 defmodule ReactUI do
-  @load_only true
-
   defmacro __using__(_) do
     quote do
       import ReactUI
@@ -19,25 +17,25 @@ defmodule ReactUI do
       { inner, attributes } = do_tag(inner, attrs)
 
       quote do
-        React.createElement(unquote(tag), unquote(attributes), unquote_splicing(inner))
+        React.createElementArray(unquote(tag), unquote(attributes), unquote(inner))
       end
     end
 
     defmacro unquote(tag)(attrs \\ []) do
       tag = Atom.to_string(unquote(tag))
 
-      { inner, attributes } = Dict.pop(attrs, :do)
+      { inner, attributes } = Keyword.pop(attrs, :do, nil)
       { inner, attributes } = do_tag(inner, attributes)
 
       quote do
-        React.createElement(unquote(tag), unquote(attributes), unquote_splicing(inner))
+        React.createElementArray(unquote(tag), unquote(attributes), unquote(inner))
       end
     end
   end
 
   defp do_tag(inner, attributes) do
     inner = case inner do
-      {:__block__, [], params} ->
+      {:__block__, _, params} ->
         params
       nil ->
         []

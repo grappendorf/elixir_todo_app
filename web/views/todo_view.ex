@@ -9,7 +9,7 @@ defmodule ElixirTodoApp.TodoView do
     todo_to_json todo
   end
 
-  defp todo_to_json todo do
+  def todo_to_json todo do
     %{
       id: todo.id,
       text: todo.text,

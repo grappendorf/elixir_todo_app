@@ -1,4 +1,6 @@
-defmodule Reducers do
+defmodule Client.Reducers do
+  alias Client.Todo
+
   def reduce state, {:load_todos, todos} do
     %{state | todos: todos}
   end

@@ -1,8 +1,6 @@
-defmodule Todo do
+defmodule Client.Todo do
+  alias Client.Todo
   defstruct id: nil, text: "", status: :todo
-
-  @todo :todo
-  @done :done
 
   def new id, text, status \\ :todo do
     %{id: id, text: text,
@@ -42,16 +40,8 @@ defmodule Todo do
     end
   end
 
-  def find_by_id [], id do
-    nil
-  end
-
-  def find_by_id [todo], id do
-    if todo.id == id, do: todo, else: nil
-  end
-
-  def find_by_id [todo | rest], id do
-    if todo.id == id, do: todo, else: find_by_id(rest, id)
+  def find_by_id todos, id do
+    Enum.find todos, fn %{id: an_id} -> an_id == id end
   end
 
   def find_index_by_id todos, id do
@@ -62,7 +52,7 @@ defmodule Todo do
     find_index todos, fun, 0
   end
 
-  def find_index [], fun, pos do
+  def find_index [], _fun, _pos do
     nil
   end
 

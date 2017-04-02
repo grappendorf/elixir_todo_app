@@ -15,11 +15,6 @@
   <div class="container">
     <%= render @view_module, @view_template, assigns %>
   </div>
-  <script type="application/json" id="config">
-    {
-      "version": "<%= Application.get_env(:elixir_todo_app, :version) %>"
-    }
-  </script>
   <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 </body>
 </html>

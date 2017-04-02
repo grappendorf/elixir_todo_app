@@ -1,12 +1,13 @@
-defmodule Views do
+defmodule Client.Views do
   use ReactUI
+  alias Client.{Store}
 
   @key_enter 13
   @key_escape 27
 
   def render state, _ do
     state
-    |> Views.page
+    |> page
     |> ReactDOM.render(:document.getElementById("app"))
   end
 
@@ -19,14 +20,14 @@ defmodule Views do
     end
   end
 
-  def page_title state do
+  defp page_title _state do
     h1 className: "text-center" do
       i className: "fa fa-check"
       " Elixir Todo App"
     end
   end
 
-  def todo_input state do
+  defp todo_input state do
     ReactUI.div className: "input-group todo-input tutor-container" do
       input autoFocus: true, className: "form-control",
         value: state.new_todo_text, placeholder: "What do you want to do?",
@@ -42,7 +43,7 @@ defmodule Views do
     end
   end
 
-  def todo_list state do
+  defp todo_list state do
     ReactUI.div do
       ReactUI.div className: "checkbox pull-right" do
         label do
@@ -66,7 +67,7 @@ defmodule Views do
     end
   end
 
-  def todo_item todo, edit_todo do
+  defp todo_item todo, edit_todo do
     if edit_todo && edit_todo.id == todo.id do
       todo_item_editor todo, edit_todo
     else
@@ -74,7 +75,7 @@ defmodule Views do
     end
   end
 
-  def todo_item_editor todo, edit_todo do
+  defp todo_item_editor todo, edit_todo do
     tr key: todo.id do
       td className: "width-100" do
         input value: edit_todo.text, autoFocus: true, className: "form-control",
@@ -105,7 +106,7 @@ defmodule Views do
     end
   end
 
-  def todo_item_text todo do
+  defp todo_item_text todo do
     tr key: todo.id do
       td className: "width-100",
         onClick: fn _, _ -> Store.dispatch {:edit_todo, todo.id} end do
@@ -116,13 +117,13 @@ defmodule Views do
     end
   end
 
-  def done_button_class(%{status: :todo}), do: "fa-check btn-success"
-  def done_button_class(%{status: :done}), do: "fa-gear btn-warning"
+  defp done_button_class(%{status: :todo}), do: "fa-check btn-success"
+  defp done_button_class(%{status: :done}), do: "fa-gear btn-warning"
 
-  def todo_text_class(%{status: :todo}), do: "text-bold"
-  def todo_text_class(%{status: :done}), do: "text-strikethrough text-italic"
+  defp todo_text_class(%{status: :todo}), do: "text-bold"
+  defp todo_text_class(%{status: :done}), do: "text-strikethrough text-italic"
 
-  def help state do
+  defp help state do
     ReactUI.div className: "pull-right tutor-container" do
       small do
         "Version #{state.config.version} | "
@@ -137,7 +138,7 @@ defmodule Views do
     end
   end
 
-  def confirm msg, fun_ok, fun_cancel do
+  defp confirm msg, fun_ok, fun_cancel do
     dialog = JS.new(ModalVanilla, [%{"title" => "Please confirm", "content" => msg}])
     dialog.on "dismiss", fn _, _, button ->
       if button.value, do: fun_ok.(), else: fun_cancel.()
@@ -145,7 +146,7 @@ defmodule Views do
     dialog.show()
   end
 
-  def tutor :add_todo, %{tutor: :add_todo} do
+  defp tutor :add_todo, %{tutor: :add_todo} do
     ReactUI.div className: "tutor tutor-left",
       onClick: fn _, _ -> Store.dispatch {:next_tutor} end do
       "Click here to write your first todo. Press enter or click "
@@ -154,14 +155,14 @@ defmodule Views do
     end
   end
 
-  def tutor :edit_todo, %{tutor: :edit_todo} do
+  defp tutor :edit_todo, %{tutor: :edit_todo} do
     ReactUI.div className: "tutor tutor-left",
       onClick: fn _, _ -> Store.dispatch {:next_tutor} end do
       "Click on a todo to edit it."
     end
   end
 
-  def tutor :edit_todo_actions, %{tutor: :edit_todo_actions} do
+  defp tutor :edit_todo_actions, %{tutor: :edit_todo_actions} do
     ReactUI.div className: "tutor tutor-left",
       onClick: fn _, _ -> Store.dispatch {:next_tutor} end do
         "You can save your changes "
@@ -176,20 +177,21 @@ defmodule Views do
     end
   end
 
-  def tutor :hide_done, %{tutor: :hide_done} do
+  defp tutor :hide_done, %{tutor: :hide_done} do
     ReactUI.div className: "tutor tutor-right",
       onClick: fn _, _ -> Store.dispatch {:next_tutor} end do
       "Show only unfinished tasks by activating this checkbox."
     end
   end
 
-  def tutor :show_tutorial, %{tutor: :show_tutorial} do
+  defp tutor :show_tutorial, %{tutor: :show_tutorial} do
     ReactUI.div className: "tutor tutor-right",
       onClick: fn _, _ -> Store.dispatch {:next_tutor} end do
       "Click here to show the tutorial again."
     end
   end
 
-  def tutor _, _ do
+  defp tutor _, _ do
+    ReactUI.div
   end
 end
